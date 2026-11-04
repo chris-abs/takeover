@@ -27,6 +27,17 @@ Pick the smallest scope that proves the behaviour with realistic inputs and obse
 
 Integration tests own a few representative paths. Focused tests own the detailed branch matrix.
 
+## Low-value seams
+
+A seam needs a project-owned rule whose regression would harm a user or business outcome. Do not propose a seam for:
+
+- behaviour a library or provider owns: layout chrome, navigation menus, sign-in and sign-out UI, component rendering
+- pure composition: components placed together with no project rule deciding what shows
+- static text, labels, or configuration values passed straight through
+- behaviour another proposed seam already exercises as a side effect
+
+Classify these in the "not seams" list instead, with the reason. When in doubt, leave it out; the user can ask for it at review.
+
 ## Migration-safe protection: data in → data out
 
 We know the store's construction will change (Redux hooks → thunks), so everything between input and output is not a contract. Tests protect the data flow and treat the middle as a black box.
