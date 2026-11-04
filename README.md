@@ -35,5 +35,5 @@ Into `~/.claude/` for an active skill, the same with `~/.claude/skills/` and `~/
 
 ## Skills
 
-- `wip/legacy-harness`: audits a legacy app so it can be safely migrated. Agents: `test-report`, `icl-compatibility` (ICL = InternalCL), `framework-insights`.
-- `wip/pr-summary`: reviews the current branch against its Azure DevOps ticket, then runs specialist review. Agents: `pr-review-performance`, `pr-review-standards`, `pr-review-architecture`. Needs a repo context in the consuming repo.
+- `wip/legacy-harness`: audits a legacy app so it can be safely migrated, then builds the approved test protection. Agents: `test-report`, `icl-compatibility` (ICL = InternalCL), `framework-insights`, `test-builder`.
+- `active/pr-summary`: reviews the current branch against its Azure DevOps ticket, then runs specialist review. Agents: `pr-review-performance`, `pr-review-standards`, `pr-review-architecture`. Needs a repo context in the consuming repo.

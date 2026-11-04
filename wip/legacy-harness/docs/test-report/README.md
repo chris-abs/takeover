@@ -10,7 +10,7 @@ Focused and integration tests. Audit only: never writes tests. Name browser, bac
 
 ## Methodology
 
-Follow [workflow.md](workflow.md). Supporting guidance:
+Follow [workflow.md](workflow.md). It benchmarks the app against [target-harness.md](target-harness.md), then branches on what already exists. Each branch says which of these to read:
 
 - [seam-model.md](seam-model.md): seams, test levels, data in → data out
 - [boundaries.md](boundaries.md): what stays real versus mocked
@@ -19,6 +19,6 @@ Follow [workflow.md](workflow.md). Supporting guidance:
 
 ## Output
 
-[output-format.md](output-format.md) (draft): private journeys and seam map, plus the seams to publish later.
+[output-format.md](output-format.md): the current-versus-proposed summary, private journeys and seam map, plus the seams to publish later.
 
 Decisions: [decisions.md](decisions.md).
