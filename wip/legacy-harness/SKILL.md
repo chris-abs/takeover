@@ -1,58 +1,41 @@
 ---
 name: legacy-harness
-description: Audit a legacy app so it can be safely migrated, then build the approved test protection. Use when the user wants a legacy app's current behaviour protected before fundamental changes such as Redux hooks → thunks, React upgrades, or CRA → Vite.
+description: Audit a legacy app so it can be safely migrated, hand the findings over for review, then build the approved test protection. Use when the user wants a legacy app's current behaviour protected before fundamental changes such as Redux hooks → thunks, React upgrades, CRA → Vite or the move to ICL Tailwind.
 ---
 
 # Legacy harness
 
-Audit a legacy app, then act on the audit. The main aim is complete unit-test protection of current behaviour, so fundamental changes keep it working.
+You are the orchestrator. You brief subagents, read their reports and hand the results over to the user. You never audit the app yourself.
 
-Read `docs/decisions.md` first.
+Read [references/intent.md](references/intent.md) first. Then [references/contract.md](references/contract.md) for inputs, outputs and approval boxes, and [references/harness.md](references/harness.md) for how to start subagents on this harness.
 
 ## Phases
 
-1. **Audit.** Run the audit subagents in parallel. Each writes its proposals to the report directory.
-2. **Review.** Stop. The user reviews the reports and marks each proposal approved or rejected in the files. Do not continue until the user says the review is done.
-3. **Build.** Run `test-builder` on the approved seams only.
-
 Run one phase per invocation unless the user explicitly asks to continue.
+
+1. **Audit.** Start every audit subagent at once. Wait for all of them, then write the handover ([references/handover.md](references/handover.md)).
+2. **Review.** Stop. Point the user to `handover/README.md`. They tick the boxes in the report files for what they approve. Don't continue until they say the review is done.
+3. **Build.** Start `build-tests` with the reviewed `seam-map.md`. It builds ticked seams only. Relay its reply.
 
 ## Subagents
 
-Agents in `agents/` beside this file. Each reads only its own docs folder.
+Each lives in `subagents/<name>/`: an `AGENT.md` to follow, with its context in `references/`. Names are `<phase>-<domain>`; the agent name adds the `legacy-harness-` prefix ([references/intent.md](references/intent.md)).
 
-| Agent | Phase | Docs |
-|---|---|---|
-| `test-report` | Audit | `docs/test-report/` |
-| `icl-compatibility` | Audit | `docs/icl-compatibility/` |
-| `framework-insights` | Audit | `docs/framework-insights/` |
-| `test-builder` | Build | `docs/test-builder/` |
+| Subagent | Agent name | Phase | Extra input |
+|---|---|---|---|
+| `audit-tests` | `legacy-harness-audit-tests` | Audit | none |
+| `audit-icl` | `legacy-harness-audit-icl` | Audit | ICL root |
+| `audit-framework` | `legacy-harness-audit-framework` | Audit | none |
+| `build-tests` | `legacy-harness-build-tests` | Build | seam map |
 
-`test-builder` is a placeholder that returns a fixed line. Dispatch it as normal and relay its line unchanged.
+`build-tests` is a placeholder that replies with a fixed line. Start it as normal and relay its line unchanged.
 
-Each agent's `model` frontmatter sets the model it runs on. Do not pass a model override when dispatching.
+## Before the audit
 
-Give each subagent only:
-
-- the app root
-- the absolute path to its docs folder
-- the report directory
-- for `icl-compatibility`, the ICL root
-- for `test-builder`, the path to the approved `seam-map.md`
-
-The ICL root is the workspace directory whose `packages/design-system/package.json` is named `@victorianplumbing/internal-component-library`. If no workspace directory matches, ask the user to add the ICL repository to the workspace before the audit. Don't dispatch `icl-compatibility` without it.
-
-Pass paths, not your own reading of the app. Subagents return a short summary; their full output lives in the report directory.
-
-Audit subagents are independent. Dispatch them all at once and never pass one subagent's output to another.
+- **App root:** the app the user names. If it's unclear, ask.
+- **ICL root:** the workspace directory whose `packages/design-system/package.json` is named `@victorianplumbing/internal-component-library`. If none matches, ask the user to add the ICL repository to the workspace. Don't start `audit-icl` without it; start the others.
+- **Output root:** `output/legacy-audit/<app>/` at the workspace root. Create `reports/<subagent>/` for each subagent before starting it.
 
 ## After the audit
 
-Merge the subagent summaries into `output/legacy-audit/report/<app>/README.md`:
-
-- for `test-report`: its branch (A, B or C), the current-versus-proposed summary, and the setup required to deliver it
-- for `icl-compatibility`: its classification, the count of items by rating in each table, and the main ICL gaps
-- for `framework-insights`: its assessment status, the number of proposed commits, and any items that need the user's input
-- what needs the user's review
-
-Where two audits report the same finding, keep it once under the audit that owns it. Keep confirmed findings separate from suspected issues.
+Write `handover/README.md` and one `handover/<subagent>.md` per report, as [references/handover.md](references/handover.md) describes. Then tell the user, in a few lines: which audits completed, how many boxes are waiting for review, anything that needs their input, and the link to `handover/README.md`.

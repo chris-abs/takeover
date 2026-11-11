@@ -1,0 +1,4 @@
+interface:
+  display_name: "Legacy Harness"
+  short_description: "Audit a legacy app, hand over findings, build approved tests"
+  default_prompt: "Use $legacy-harness to audit this app."
