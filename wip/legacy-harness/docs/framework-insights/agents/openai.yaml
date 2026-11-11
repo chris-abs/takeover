@@ -1,4 +1,0 @@
-interface:
-  display_name: "Assess Repo Modernisation"
-  short_description: "Propose semantic commits for React 18 and Vite"
-  default_prompt: "Use $assess-repo-modernisation to investigate this repo and write a concise plan-first report with granular semantic commits, focused verification and only genuine requests for my input."

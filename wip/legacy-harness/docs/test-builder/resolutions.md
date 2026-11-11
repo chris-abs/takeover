@@ -1,6 +1,6 @@
 # Known resolutions
 
-Recurring framework issues that already have a settled answer. When an app hits one, report it as resolved and cite the entry here. Do not raise it as an open question.
+Recurring test-setup problems that already have a settled answer. Use the answer here; don't solve them again.
 
 ## Auth and HTTP clients in tests without MSAL
 

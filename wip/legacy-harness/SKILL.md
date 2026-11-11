@@ -28,7 +28,7 @@ Agents in `agents/` beside this file. Each reads only its own docs folder.
 | `framework-insights` | Audit | `docs/framework-insights/` |
 | `test-builder` | Build | `docs/test-builder/` |
 
-`framework-insights` and `test-builder` are placeholders that return a fixed line. Dispatch them as normal and relay their line unchanged.
+`test-builder` is a placeholder that returns a fixed line. Dispatch it as normal and relay its line unchanged.
 
 Each agent's `model` frontmatter sets the model it runs on. Do not pass a model override when dispatching.
 
@@ -52,7 +52,7 @@ Merge the subagent summaries into `output/legacy-audit/report/<app>/README.md`:
 
 - for `test-report`: its branch (A, B or C), the current-versus-proposed summary, and the setup required to deliver it
 - for `icl-compatibility`: its classification, the count of items by rating in each table, and the main ICL gaps
-- for each other audit: what it found and where its report is
+- for `framework-insights`: its assessment status, the number of proposed commits, and any items that need the user's input
 - what needs the user's review
 
 Where two audits report the same finding, keep it once under the audit that owns it. Keep confirmed findings separate from suspected issues.
