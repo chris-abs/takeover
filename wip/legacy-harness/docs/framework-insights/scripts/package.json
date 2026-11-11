@@ -1,0 +1,12 @@
+{
+  "name": "modernisation-assessment-tools",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "semver": "7.7.2",
+    "knip": "6.45.1"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}
