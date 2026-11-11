@@ -28,7 +28,7 @@ Agents in `agents/` beside this file. Each reads only its own docs folder.
 | `framework-insights` | Audit | `docs/framework-insights/` |
 | `test-builder` | Build | `docs/test-builder/` |
 
-`icl-compatibility`, `framework-insights` and `test-builder` are placeholders that return a fixed line. Dispatch them as normal and relay their line unchanged.
+`framework-insights` and `test-builder` are placeholders that return a fixed line. Dispatch them as normal and relay their line unchanged.
 
 Each agent's `model` frontmatter sets the model it runs on. Do not pass a model override when dispatching.
 
@@ -37,7 +37,10 @@ Give each subagent only:
 - the app root
 - the absolute path to its docs folder
 - the report directory
+- for `icl-compatibility`, the ICL root
 - for `test-builder`, the path to the approved `seam-map.md`
+
+The ICL root is the workspace directory whose `packages/design-system/package.json` is named `@victorianplumbing/internal-component-library`. If no workspace directory matches, ask the user to add the ICL repository to the workspace before the audit. Don't dispatch `icl-compatibility` without it.
 
 Pass paths, not your own reading of the app. Subagents return a short summary; their full output lives in the report directory.
 
@@ -48,6 +51,7 @@ Audit subagents are independent. Dispatch them all at once and never pass one su
 Merge the subagent summaries into `output/legacy-audit/report/<app>/README.md`:
 
 - for `test-report`: its branch (A, B or C), the current-versus-proposed summary, and the setup required to deliver it
+- for `icl-compatibility`: its classification, the count of items by rating in each table, and the main ICL gaps
 - for each other audit: what it found and where its report is
 - what needs the user's review
 
