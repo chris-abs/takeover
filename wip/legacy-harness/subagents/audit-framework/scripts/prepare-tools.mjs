@@ -61,7 +61,7 @@ async function main() {
     catch (e) {
       const raw = String(e.stderr || '') + String(e.stdout || '');
       const reason = e.killed ? 'timeout' : /E401|E403|ENEEDAUTH/.test(raw) ? 'authentication-or-access' : /ENOTFOUND|EAI_AGAIN|ECONN|ENETUNREACH/.test(raw) ? 'network' : 'installation-failed';
-      throw Error('Tool preparation failed: ' + reason + '; diagnose execution/network access using references/execution.md (raw npm errors omitted)');
+      throw Error('Tool preparation failed: ' + reason + '; diagnose execution/network access using execution.md beside AGENT.md (raw npm errors omitted)');
     }
     for (const [name, version] of Object.entries(manifest.dependencies)) {
       const data = JSON.parse(await fs.readFile(path.join(tools, 'node_modules', name, 'package.json'), 'utf8'));

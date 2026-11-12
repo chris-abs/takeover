@@ -6,7 +6,7 @@ Work down the tree. Record the answer and the evidence at every decision; the br
 
 ## 1. Benchmark the setup
 
-Read the app's own guidance (README, AGENTS.md or similar), `package.json`, the build config, and the CI pipeline. Compare each area with [target-harness.md](target-harness.md):
+Read the app's own guidance (README, contributor or agent guidance), `package.json`, the build config, and the CI pipeline. Compare each area with [target-harness.md](target-harness.md):
 
 - runner and libraries
 - test files: count, locations, and naming

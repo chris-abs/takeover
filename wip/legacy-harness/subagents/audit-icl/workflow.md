@@ -4,7 +4,7 @@ Work through the steps in order. Do all of the app's inventory before reading an
 
 ## 1. Check the ICL is available
 
-If the ICL root is missing or `packages/docs/src/docs/tailwind/Home/migrationMapData.ts` isn't under it, write a report saying so and stop.
+If the ICL root is missing or `packages/docs/src/docs/tailwind/Home/migrationMapData.ts` isn't under it, reply with an incomplete report saying so and stop.
 
 ## 2. Classify
 
@@ -12,7 +12,7 @@ Grep the app's source (not `node_modules`) for imports from `@victorianplumbing/
 
 | What the imports show | Classification | Next |
 |---|---|---|
-| Only `/tailwind` imports, and nothing from the package root | Tailwind | Write the short report in [output-format.md](output-format.md) and stop |
+| Only `/tailwind` imports, and nothing from the package root | Tailwind | Reply with the short report in [output-format.md](output-format.md) and stop |
 | Any import from the package root | Styled | Step 3, styled path |
 | No ICL imports | No ICL | Step 3, no-ICL path |
 

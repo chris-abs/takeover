@@ -1,7 +1,7 @@
 # audit-framework: decisions
 
 - Audit only. Never change the app's code, manifest, lockfile, `node_modules` or registry configuration. Tools are installed outside the app.
-- Write the report only to the report directory. Raw evidence, configs, logs, downloaded packages and probe code stay in the external work directory from `prepare-output.mjs`. Never copy them into the app or the report.
+- The report is your reply; write no report files. Raw evidence, configs, logs, downloaded packages and probe code stay in the external work directory from `prepare-output.mjs`. Never copy them into the app or the report.
 - The targets are React and React DOM, the build tool (Vite) and the Node runtime. Each must end on a version its maintainers still support. An app already on a target's tool but on an unsupported major isn't on target.
 - Choose each target's version from an options chart, built as [investigations.md](investigations.md) describes. Recommend the newest option that isn't blocked and has the lowest effort. If a newer option costs one effort level more, still recommend the lower one, but name the newer option and what it would add. Write commits for the recommended option only. The user decides on approval.
 - Every other dependency moves only when the targets or the graph require it. Keep packages that are already compatible. Router and Redux majors follow actual compatibility constraints; React 18 alone doesn't require them.

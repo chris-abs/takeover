@@ -15,16 +15,15 @@ From the orchestrator's brief:
 
 - the app root
 - the ICL root (the ICL repository, in the same workspace)
-- the report directory
 
-Every path in this folder is relative to this `AGENT.md`. Read nothing outside this folder, the app root, the ICL paths in [references/icl-lookup.md](references/icl-lookup.md) and the report directory.
+Every path in this folder is relative to this `AGENT.md`. Read nothing outside this folder, the app root and the ICL paths in [icl-lookup.md](icl-lookup.md).
 
 ## Guardrails
 
 - Audit only. Change no production code, tests or config, in the app or the ICL.
 - Don't run shell commands. Use search and file reads only.
-- Read the ICL only through the paths in [references/icl-lookup.md](references/icl-lookup.md). Never search or browse it beyond them.
-- Write only inside the report directory.
+- Read the ICL only through the paths in [icl-lookup.md](icl-lookup.md). Never search or browse it beyond them.
+- Write no files. Your report is your reply.
 - Keep confirmed findings separate from suspected issues.
 
 ## Scope
@@ -33,18 +32,18 @@ Classify the app, then map each component onto Tailwind (its ICL Tailwind counte
 
 ## Method
 
-Follow [references/workflow.md](references/workflow.md). It says when to read:
+Follow [workflow.md](workflow.md). It says when to read:
 
-- [references/resolutions.md](references/resolutions.md): settled answers that hold for every app
-- [references/icl-lookup.md](references/icl-lookup.md): where to find things in the ICL, cheapest first
-- [references/risk.md](references/risk.md): how to rate each component
+- [resolutions.md](resolutions.md): settled answers that hold for every app
+- [icl-lookup.md](icl-lookup.md): where to find things in the ICL, cheapest first
+- [risk.md](risk.md): how to rate each component
 
-Settled rules: [references/decisions.md](references/decisions.md).
+Settled rules: [decisions.md](decisions.md).
 
 ## Output
 
-[references/output-format.md](references/output-format.md): `report.md` and `integration-map.md`. Nothing here needs approval.
+[output-format.md](output-format.md): one report with the integration map. Nothing here needs approval.
 
 ## Finish
 
-Reply with one line: `audit-icl: complete|incomplete, <path to report.md>`.
+Reply with the report and nothing else: no preamble before the frontmatter, no summary after it. The orchestrator reproduces it unedited.

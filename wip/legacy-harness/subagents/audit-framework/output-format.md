@@ -1,14 +1,14 @@
 # Output format
 
-Written to the report directory in your brief. Not committed. The report is the handoff for implementation, not a transcript of discovery.
+Your reply is the report, and the only thing you produce: write nothing outside the scripts' work directory. The report is the handoff for implementation, not a transcript of discovery.
 
-## `report.md`
+## Report
 
 ### Frontmatter
 
 ```yaml
 ---
-schema: legacy-harness/report/v1
+schema: legacy-harness/report/v2
 subagent: audit-framework
 app: <app folder name>
 commit: <full assessed commit>
@@ -16,7 +16,6 @@ assessed_on: YYYY-MM-DD
 status: complete | incomplete
 status_reason: <only when incomplete: the specific reason>
 headline: <one sentence: the recommended targets and how many commits get there>
-approvals: report.md
 proposed: <number of COMMIT-NN sections>
 needs_input: <number of "Needs your input" items>
 branch: <branch>
@@ -79,9 +78,9 @@ Leave the section out when it's empty. Each item says what the user needs to do,
 
 One sentence: what actually ran and its material limitation. Don't link raw evidence or cache paths.
 
-## `cleanup.md`
+### Optional cleanup
 
-Only when there's useful optional cleanup: unused dependencies, files or exports that the migration doesn't need removed. Give each a disposition of candidate, verified or retain, with enough detail to understand it without the raw Knip output. Link it from the checks line in `report.md`. Cleanup the migration requires belongs in its commit instead.
+The last section, only when there's useful optional cleanup: unused dependencies, files or exports that the migration doesn't need removed. Give each a disposition of candidate, verified or retain, with enough detail to understand it without the raw Knip output. Cleanup the migration requires belongs in its commit instead.
 
 ## Not in the report
 

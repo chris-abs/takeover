@@ -2,15 +2,15 @@
 
 > **Draft.** Under review.
 
-Written to the report directory in your brief. Not committed.
+Your reply is the report, and the only thing you produce: write no files.
 
 ## Frontmatter
 
-Every `report.md` opens with:
+Every report opens with:
 
 ```yaml
 ---
-schema: legacy-harness/report/v1
+schema: legacy-harness/report/v2
 subagent: audit-icl
 app: <app folder name>
 commit: <full assessed commit>
@@ -18,7 +18,6 @@ assessed_on: YYYY-MM-DD
 status: complete | incomplete
 status_reason: <only when incomplete, such as the ICL root missing>
 headline: <one sentence: the most important finding>
-approvals: none
 proposed: 0
 needs_input: 0
 classification: tailwind | styled | no-icl
@@ -33,13 +32,13 @@ The integration map informs planning; nothing in it is approved or built yet, so
 
 ## Tailwind classification
 
-`report.md` only: the frontmatter, the classification and the import evidence. Nothing else.
+Only the frontmatter, the classification and the import evidence. Nothing else.
 
 ## Styled or no-ICL classification
 
-### `report.md`
+### Summary
 
-After the frontmatter, the summary, in this order:
+After the frontmatter, in this order:
 
 1. **Classification:** styled or no ICL, with the import evidence.
 2. **Ratings:** for each table, the count of items rated 🟢, 🟠 and 🔴, and the exact total of call sites for each rating.
@@ -56,9 +55,9 @@ Then:
 
 If you noted any ICL docs gaps, end with a short **ICL docs gaps** list: one bullet each, naming the doc and the source that contradicts it. Leave the section out when there are none.
 
-### `integration-map.md`
+### Integration map
 
-Three tables, in this order. Within each, sort red, then amber, then green. Each item appears in one table only.
+After the summary and the lists above. Three tables, in this order. Within each, sort red, then amber, then green. Each item appears in one table only.
 
 **ICL integration:** items with an ICL Tailwind counterpart.
 

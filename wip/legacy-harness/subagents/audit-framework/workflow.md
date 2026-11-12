@@ -18,7 +18,7 @@ Read any agent guidance in the app.
 Read [execution.md](execution.md), then run:
 
 - `scripts/prepare-tools.mjs --repo <app root>`, which installs pinned Knip and semver outside the app and returns a tools path
-- `scripts/prepare-output.mjs --repo <app root> --report <report directory>/report.md`, which returns an external `workDirectory`. Every JSON output, config, log and probe goes there.
+- `scripts/prepare-output.mjs --repo <app root>`, which returns an external `workDirectory`. Every JSON output, config, log and probe goes there, and nothing goes anywhere else.
 
 ## 3. Gather evidence
 

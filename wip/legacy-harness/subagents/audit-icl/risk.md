@@ -28,7 +28,7 @@ Apps move to the ICL Tailwind design. They don't keep their current look. Visual
 2. **Does the app have to take on logic the styled component handled for it?** Logic is any code the app doesn't have today and must write: handling events, holding or deriving state, routing or navigation, or wiring focus, validation or form state. Composing parts in JSX isn't logic in itself. It counts only when a part needs handlers, state or wiring the app doesn't already have. **Yes → 🟠 Amber.** Name each piece of logic that moves to the app.
 3. **Otherwise → 🟢 Green.** Every prop, value and piece of state the app already has maps onto the counterpart, even if the JSX structure changes.
 
-List each red behaviour under ICL gaps in `report.md`, so the ICL team can decide.
+List each red behaviour under ICL gaps in the report, so the ICL team can decide.
 
 ## Local Tailwind
 
@@ -38,7 +38,7 @@ The component stays in the app and is rebuilt with Tailwind in the new design. I
 2. **Do its styles depend on values that vary at runtime, such as state or data?** **Yes → 🟠 Amber.** Those styles need variants or state classes, not just utilities. A prop that only ever receives a constant doesn't count.
 3. **Otherwise → 🟢 Green.** The styles are presentational and are rewritten with utilities and tokens.
 
-A component with no call sites isn't rated. List it as unused in `report.md`.
+A component with no call sites isn't rated. List it as unused in the report.
 
 ## Styled-entry dependencies
 

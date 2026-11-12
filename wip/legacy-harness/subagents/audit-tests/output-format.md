@@ -2,19 +2,17 @@
 
 > **Draft.** Under review.
 
-Two layers. Journeys are private working material. Seams are the condensed record that gets published.
+Two layers. Journeys are working material. Seams are the condensed record that gets approved, then built and published.
 
-## Private report
+## Report
 
-Written to the report directory in your brief. Not committed.
+Your reply, and the only thing you produce: write no files. It opens with this frontmatter, then these sections in order: summary, details, journeys, seam map.
 
-### `report.md`
-
-Opens with this frontmatter, then the summary:
+### Frontmatter
 
 ```yaml
 ---
-schema: legacy-harness/report/v1
+schema: legacy-harness/report/v2
 subagent: audit-tests
 app: <app folder name>
 commit: <full assessed commit>
@@ -22,8 +20,7 @@ assessed_on: YYYY-MM-DD
 status: complete | incomplete
 status_reason: <only when incomplete>
 headline: <one sentence: the most important finding>
-approvals: seam-map.md
-proposed: <number of seams in seam-map.md>
+proposed: <number of SEAM-NN sections>
 needs_input: 0
 branch: A | B | C
 ---
@@ -31,7 +28,9 @@ branch: A | B | C
 
 `needs_input` stays 0: setup gaps are never questions for the user ([decisions.md](decisions.md)).
 
-The summary, in this order:
+### Summary
+
+In this order:
 
 1. **Branch:** A, B or C, with the answer and evidence at each decision.
 2. **Current versus proposed:**
@@ -44,7 +43,7 @@ The summary, in this order:
 
 3. **Setup required to deliver it:** every gap from the benchmark against the target harness, as a list of what will be added or changed. This is a consequence of approving the seams, not a separate decision.
 
-Then:
+### Details
 
 - the benchmark, area by area against the target harness
 - evidence: commands run, results, failures
@@ -52,28 +51,28 @@ Then:
 - defects that change what a test should assert, each tied to its seam and marked unconfirmed
 - what the audit does not prove
 
-### `journeys/NN-<name>/journey.md`
+### Journeys
 
-One per journey. Sequence, alternate and failure paths, business rules, variants, current evidence.
+One `#### JOURNEY-NN: <name>` section per journey: sequence, alternate and failure paths, business rules, variants, current evidence. Keep each short; they support the seams, they aren't the deliverable.
 
-### `seam-map.md`
+### Seam map
 
-The working seam map built from the journeys. This is the file the user approves and `build-tests` builds from. In branch C, list only new seams.
+The working seam map built from the journeys. This is the section the user approves and `build-tests` builds from. In branch C, list only new seams.
 
 One section per seam, in the recommended order:
 
 ```md
-### SEAM-NN: <seam name>
+#### SEAM-NN: <seam name>
 
 - [ ] Approve
 
-- **Primary journeys:** <journey links>
+- **Primary journeys:** <JOURNEY-NN IDs>
 - **Contract and observable outcomes:** <what should happen, and what a test observes>
 - **Preferred level and controlled boundaries:** <focused, integration or both; what is mocked>
 - **Variants / external boundaries:** <variants to cover; risks owned elsewhere>
 ```
 
-The box is written unticked. The user ticks it to approve, and may edit the seam's fields first. An unticked seam is never built. Keep `SEAM-NN` IDs stable when auditing again.
+The box is written unticked. The user ticks it to approve, and may edit the seam's fields first. An unticked seam is never built. Keep `SEAM-NN` IDs stable when auditing again. Each seam section must stand alone: `build-tests` receives only the ticked ones.
 
 After the seams, list what isn't a seam ([seam-model.md](seam-model.md)), with the reason for each. End with a reconciliation rule: every journey maps to a seam, or is classified as protected elsewhere, owned by another test level, or needing no test.
 

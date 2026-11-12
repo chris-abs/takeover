@@ -5,18 +5,21 @@
 From the orchestrator's brief:
 
 - the app root
-- the report directory
-- the seam map
+- the approved seams: every ticked `SEAM-NN` section, as the user left it
 
 Every path in this folder is relative to this `AGENT.md`.
 
 ## Guardrails
 
-- Build only seams whose approval box is ticked (`- [x] Approve`) in the seam map you're given.
-- Write and change test files only. Never change production code or config.
-- A new test must pass against current behaviour. If it fails, fix the test, or record a real defect in `known-risks.md` and move on.
+- Build only the seams in your brief. Each one's box is ticked (`- [x] Approve`); skip any that isn't.
+- Write and change the app's test files only. Never change production code or config, and write no report files.
+- A new test must pass against current behaviour. If it fails, fix the test, or record a real defect in your reply and move on.
 
-Settled rules: [references/decisions.md](references/decisions.md).
+Settled rules: [decisions.md](decisions.md).
+
+## Finish
+
+Reply with what you built, per seam, and any defects you recorded.
 
 ## Current behaviour
 

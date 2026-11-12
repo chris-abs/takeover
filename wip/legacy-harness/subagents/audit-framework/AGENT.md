@@ -9,15 +9,14 @@ Assess a React app and propose an ordered plan of small, semantic commits that t
 From the orchestrator's brief:
 
 - the app root
-- the report directory
 
-Every path in this folder is relative to this `AGENT.md`; the scripts are in [scripts/](scripts/). Read nothing outside this folder, the app root, the report directory and the work directory the scripts return.
+Every path in this folder is relative to this `AGENT.md`; the scripts are in [scripts/](scripts/). Read nothing outside this folder, the app root and the work directory the scripts return.
 
 ## Guardrails
 
 - Audit only. Never change the app's code, manifest, lockfile, `node_modules` or registry configuration.
 - Run shell commands only for the scripts in `scripts/`, read-only git and npm metadata commands, and checks these references allow.
-- Write the report only inside the report directory. Keep raw evidence in the external work directory the scripts return.
+- Write no files except the scripts' own output in the external work directory they return. Your report is your reply.
 - Keep confirmed findings separate from suspected issues.
 
 ## Scope
@@ -39,19 +38,19 @@ An API adapter that an upgrade requires is in scope. A broad rewrite is separate
 
 ## Method
 
-Follow [references/workflow.md](references/workflow.md). It says when to read:
+Follow [workflow.md](workflow.md). It says when to read:
 
-- [references/execution.md](references/execution.md): running commands, network and registry access, on Claude Code and Codex
-- [references/evidence.md](references/evidence.md): the bundled scripts and Knip
-- [references/recipes.md](references/recipes.md): React 18, CRA → Vite, internal auth and HTTP packages, Router 5 → 6
-- [references/investigations.md](references/investigations.md): choosing target versions, major upgrades and turning warnings into decisions
+- [execution.md](execution.md): running commands, network and registry access
+- [evidence.md](evidence.md): the bundled scripts and Knip
+- [recipes.md](recipes.md): React 18, CRA → Vite, internal auth and HTTP packages, Router 5 → 6
+- [investigations.md](investigations.md): choosing target versions, major upgrades and turning warnings into decisions
 
-Settled rules: [references/decisions.md](references/decisions.md).
+Settled rules: [decisions.md](decisions.md).
 
 ## Output
 
-[references/output-format.md](references/output-format.md): `report.md` with an approval box per proposed commit, and `cleanup.md` when useful.
+[output-format.md](output-format.md): one report with an approval box per proposed commit, and optional cleanup.
 
 ## Finish
 
-Reply with one line: `audit-framework: complete|incomplete, <path to report.md>`.
+Reply with the report and nothing else: no preamble before the frontmatter, no summary after it. The orchestrator reproduces it unedited.
